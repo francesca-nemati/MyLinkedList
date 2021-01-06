@@ -26,7 +26,7 @@ public class MyLinkedList{
    }
    return true;
  }
- /*
+
  public boolean add(int index, String value) {
    if (index < 0 || index > size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
@@ -43,6 +43,6 @@ public class MyLinkedList{
    }
  }
  public String toString();
- */
+
  //Any helper method that returns a Node object MUST BE PRIVATE!
 }
