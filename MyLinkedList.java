@@ -56,6 +56,28 @@ public class MyLinkedList{
    if (index < 0 || index > size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
    }
+   String old;
+   if (index == 0) {
+     Node n = new Node(value);
+     old = start.getData();
+     n.setNext(start.getNext());
+     start = n;
+   }
+   else if (index == size()) {
+     Node n = new Node(value);
+     old = end.getData();
+     n.setPrev(end.getPrev());
+     end = n;
+   }
+   else {
+     Node n = new Node(value);
+     old = findElement(index).getData();
+     n.setPrev(findElement(index).getPrev());
+     n.setNext(findElement(index).getNext());
+     findElement(index-1).setNext(n);
+     findElement(index+1).setPrev(n);
+   }
+   return old;
  }
 
  public String toString() {
