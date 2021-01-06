@@ -44,7 +44,7 @@ public class MyLinkedList{
  }
 
  public String get(int index) {
-   if (index < 0 || index > size()) {
+   if (index < 0 || index >= size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
    }
    else {
@@ -69,6 +69,7 @@ public class MyLinkedList{
      n.setPrev(end.getPrev());
      end = n;
    }
+
    else {
      Node n = new Node(value);
      old = findElement(index).getData();
@@ -81,10 +82,11 @@ public class MyLinkedList{
  }
 
  public String toString() {
-   String ans = "";
+   if (size() == 0) return "[]";
+   String ans = "[";
    for (int i = 0; i < size(); i++) {
      if (i < size()-1) ans = ans + get(i) + ", ";
-     else ans = ans + get(i);
+     else ans = ans + get(i) + "]";
    }
    return ans;
  }
@@ -98,8 +100,7 @@ public class MyLinkedList{
      Node n2 = n1.getNext();
      int i = 1;
      while (i < index) {
-       n2 = n1.getNext();
-       n1 = n2;
+       n1 = n1.getNext();
        i++;
      }
      return n1;
