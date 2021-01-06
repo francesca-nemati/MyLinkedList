@@ -19,8 +19,8 @@ public class MyLinkedList{
    }
    else {
      Node n = new Node(value);
-     n.setNext(end);
-     end.setPrev(n);
+     end.setNext(n);
+     n.setPrev(end);
      end = n;
      size++;
    }
@@ -36,6 +36,7 @@ public class MyLinkedList{
    if (index < 0 || index > size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
    }
+
  }
  public String set(int index, String value) {
    if (index < 0 || index > size()) {
@@ -44,5 +45,16 @@ public class MyLinkedList{
  }
  public String toString();
 
+ private Node findElement(int index) {
+   Node n1 = new Node(start.getNext());
+   if (index == 0) return start;
+   if (index == size()) return end;
+   int i = 1;
+   while (i < index) {
+     Node n2 = new Node(n1.getNext());
+     n1 = n2;
+   }
+   return n1;
+ }
  //Any helper method that returns a Node object MUST BE PRIVATE!
 }
