@@ -36,7 +36,9 @@ public class MyLinkedList{
    if (index < 0 || index > size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
    }
-
+   else {
+     return findElement(index).getData();
+   }
  }
  public String set(int index, String value) {
    if (index < 0 || index > size()) {
