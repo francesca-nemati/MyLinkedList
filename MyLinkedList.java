@@ -15,15 +15,14 @@ public class MyLinkedList{
      Node n = new Node(value);
      start = n;
      end = n;
-     size++;
    }
    else {
      Node n = new Node(value);
-     end.setNext(n);
      n.setPrev(end);
+     end.setNext(n);
      end = n;
-     size++;
    }
+   size++;
    return true;
  }
 
@@ -31,7 +30,19 @@ public class MyLinkedList{
    if (index < 0 || index > size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
    }
+   else if (index == size()) return add(value);
+   else {
+     Node n = new Node(value);
+     n.setPrev(findElement(index).getPrev());
+     findElement(index).setPrev(n);
+     n.setNext(findElement(index));
+     if (index > 0) findElement(index-1).setNext(n);
+     else start = n;
+   }
+   size++;
+   return true;
  }
+
  public String get(int index) {
    if (index < 0 || index > size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
@@ -40,23 +51,37 @@ public class MyLinkedList{
      return findElement(index).getData();
    }
  }
+
  public String set(int index, String value) {
    if (index < 0 || index > size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
    }
  }
- public String toString();
 
+ public String toString() {
+   String ans = "";
+   for (int i = 0; i < size(); i++) {
+     if (i < size()-1) ans = ans + get(i) + ", ";
+     else ans = ans + get(i);
+   }
+   return ans;
+ }
+
+//Any helper method that returns a Node object MUST BE PRIVATE!
  private Node findElement(int index) {
-   Node n1 = new Node(start.getNext());
+   Node n1 = start.getNext();
    if (index == 0) return start;
    if (index == size()) return end;
-   int i = 1;
-   while (i < index) {
-     Node n2 = new Node(n1.getNext());
-     n1 = n2;
+   else {
+     Node n2 = n1.getNext();
+     int i = 1;
+     while (i < index) {
+       n2 = n1.getNext();
+       n1 = n2;
+       i++;
+     }
+     return n1;
    }
-   return n1;
  }
- //Any helper method that returns a Node object MUST BE PRIVATE!
+
 }
