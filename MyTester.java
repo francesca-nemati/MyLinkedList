@@ -12,6 +12,8 @@ public class MyTester {
     first.set(5, "yes");
     first.set(0, "whazzzup");
     first.set(4, "function?");
+    first.remove(0);
+    first.remove(4);
 
     MyLinkedList m = new MyLinkedList();
     m.add("hello");
@@ -19,6 +21,7 @@ public class MyTester {
     m.add("foo");
     m.add("bar");
     m.set(3, "far");
+    m.remove(2);
     //System.out.println(m.get(4));
     System.out.println(first.toString());
     System.out.println(first.toStringReversed());
