@@ -104,6 +104,32 @@ public class MyLinkedList{
    if (index < 0 || index >= size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
    }
+   String old;
+   if (size() == 1) {
+     old = start.getData();
+     start = null;
+     end = null;
+     size--;
+   }
+   else if (index == 0) {
+     old = start.getData();
+     start.getNext().setPrev(null);
+     start = start.getNext();
+     size--;
+   }
+   else if (index == size()-1) {
+     old = end.getData();
+     end.getPrev().setNext(null);
+     end = end.getPrev();
+     size--;
+   }
+   else {
+     old = findElement(index).getData();
+     findElement(index-1).setNext(findElement(index+1));
+     findElement(index+1).setPrev(findElement(index-1));
+     size--;
+   }
+   return old;
  }
 
 //Any helper method that returns a Node object MUST BE PRIVATE!
