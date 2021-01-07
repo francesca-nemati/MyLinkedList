@@ -132,6 +132,16 @@ public class MyLinkedList{
    return old;
  }
 
+ public void extend(MyLinkedList other) {
+   this.end.setNext(other.start);
+   other.start.setPrev(this.end);
+   this.end = other.end;
+   other.start = null;
+   other.end = null;
+   this.size = this.size + other.size;
+   other.size = 0;
+ }
+
 //Any helper method that returns a Node object MUST BE PRIVATE!
   private Node findElement(int index) {
    Node n1 = start.getNext();
