@@ -26,11 +26,11 @@ public class MyLinkedList{
    return true;
  }
 
- public boolean add(int index, String value) {
+ public void add(int index, String value) {
    if (index < 0 || index > size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
    }
-   else if (index == size()) return add(value);
+   else if (index == size()) add(value);
    else {
      Node n = new Node(value);
      n.setPrev(findElement(index).getPrev());
@@ -38,9 +38,8 @@ public class MyLinkedList{
      n.setNext(findElement(index));
      if (index > 0) findElement(index-1).setNext(n);
      else start = n;
+     size++;
    }
-   size++;
-   return true;
  }
 
  public String get(int index) {
@@ -53,7 +52,7 @@ public class MyLinkedList{
  }
 
  public String set(int index, String value) {
-   if (index < 0 || index > size()) {
+   if (index < 0 || index >= size()) {
      throw new IndexOutOfBoundsException("No such index in this List");
    }
    String old;
@@ -63,7 +62,7 @@ public class MyLinkedList{
      n.setNext(start.getNext());
      start = n;
    }
-   else if (index == size()) {
+   else if (index == size()-1) {
      Node n = new Node(value);
      old = end.getData();
      n.setPrev(end.getPrev());
@@ -91,11 +90,27 @@ public class MyLinkedList{
    return ans;
  }
 
+ public String toStringReversed() {
+   if (size() == 0) return "[]";
+   String ans = "[";
+   for (int i = size()-1; i >= 0; i--) {
+     if (i > 0) ans = ans + get(i) + ", ";
+     else ans = ans + get(i) + "]";
+   }
+   return ans;
+ }
+
+ public String remove(int index){
+   if (index < 0 || index >= size()) {
+     throw new IndexOutOfBoundsException("No such index in this List");
+   }
+ }
+
 //Any helper method that returns a Node object MUST BE PRIVATE!
- private Node findElement(int index) {
+  private Node findElement(int index) {
    Node n1 = start.getNext();
    if (index == 0) return start;
-   if (index == size()) return end;
+   if (index == size()-1) return end;
    else {
      Node n2 = n1.getNext();
      int i = 1;
