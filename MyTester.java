@@ -18,9 +18,15 @@ public class MyTester {
     m.add("world");
     m.add("foo");
     m.add("bar");
+    m.set(3, "far");
     //System.out.println(m.get(4));
     System.out.println(first.toString());
+    System.out.println(first.toStringReversed());
+    System.out.println(first.size());
     System.out.println(m.toString());
+    System.out.println(m.toStringReversed());
+    System.out.println(m.size());
+
   }
 
 }
