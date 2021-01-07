@@ -30,6 +30,11 @@ public class MyTester {
     System.out.println(m.toStringReversed());
     System.out.println(m.size());
 
+    first.extend(m);
+    System.out.println(first.toString());
+    System.out.println(first.size());
+    System.out.println(m.toString());
+    System.out.println(m.size());
   }
 
 }
